@@ -1,0 +1,43 @@
+{% extends "user/index.html" %}
+{% block body %}
+<form  method="post" action="searchfile_post">
+  <div align="center">
+    <table width="377" height="46" border="0">
+      <tr>
+        <td width="218" >
+            <input type="text" name="textfield" class="form-control" placeholder="Search By Keyword" id="textfield" />
+        </td>
+        <td width="143">
+            <input type="submit" name="button" class="btn btn-info"  id="button" value="Search" /></td>
+      </tr>
+    </table>
+  </div>
+<br><br>
+
+<div align="center">
+  <p>&nbsp;</p>
+  <table style="width: 800px;" class="table table-bordered" id="t1">
+    <tr>
+        <td width="30"><div align="center"><strong>#</strong></div></td>
+        <td ><div align="center"><strong>Image</strong></div></td>
+        <td ><div align="center"><strong>Uploaded By</strong></div></td>
+        <td ><div align="center"><strong>Title</strong></div></td>
+        <td ><div align="center"><strong>Uploaded Date</strong></div></td>
+        <td ><div align="center"><strong>Occurence</strong></div></td>
+        <td >&nbsp;</td>
+    </tr>
+        {% for r in range(0,ln) %}
+    <tr>
+    <td><label>{{ r + 1 }}</label></td>
+      <td><img src="{{ ph[r] }}" height="100" width="100"></td>
+      <td><label>{{ na[r] }}</label></td>
+      <td><label>{{ fname[r] }}</label></td>
+      <td><label>{{ cd[r] }}</label></td>
+        <td><label>{{ arr[r]['word'] }} : {{ arr[r]['importance'] }}</label></td>
+    <td><div align="center"><a href="/download/{{ fid[r] }}" class="btn btn-info"><strong>Download</strong></a></div></td>
+    </tr>
+            {% endfor %}
+  </table>
+</div>
+</form>
+{% endblock %}

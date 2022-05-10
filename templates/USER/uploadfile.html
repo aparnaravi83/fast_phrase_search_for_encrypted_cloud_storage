@@ -1,0 +1,73 @@
+{% extends "user/index.html" %}
+{% block body %}
+<form action="/fileupload" method="post" enctype="multipart/form-data" name="form1" id="form1" onsubmit="return validate()">
+  <div align="center">
+    <table style="width: 416px;" class="table table-bordered">
+      <tr>
+        <td width="77" ><strong>Type</strong></td>
+        <td width="323">
+          <select name="typ" id="select">
+            <option selected>private</option>
+            <option>public</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Title</strong></td>
+        <td>
+            <input type="text" name="ttl" id="ttl" /><br>
+            <span id="a" style="color: red; visibility:hidden; font-size: 14px;">* Missing</span>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Description</strong></td>
+        <td>
+        <textarea name="des" id="des" cols="45" rows="5"></textarea><br>
+            <span id="b" style="color: red; visibility:hidden; font-size: 14px;">* Missing</span>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>File</strong></td>
+        <td>
+        <input type="file" name="fil" id="fil" /><br>
+            <span id="c" style="color: red; visibility:hidden; font-size: 14px;">* Missing</span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Upload" class="btn btn-success"/></td>
+      </tr>
+    </table>
+  </div>
+</form>
+
+<script>
+    function validate() {
+        var flag = true;
+        txt1=document.getElementById("ttl");
+        txt2=document.getElementById("des");
+        txt3=document.getElementById("fil");
+        if (txt1.value == "") {
+            document.getElementById("a").style.visibility = "visible";
+            flag = false;
+        }
+        else {
+            document.getElementById("a").style.visibility = "hidden";
+        }
+        if (txt2.value == "") {
+            document.getElementById("b").style.visibility = "visible";
+            flag = false;
+        }
+        else {
+            document.getElementById("b").style.visibility = "hidden";
+        }
+        if (txt3.value == "") {
+            document.getElementById("c").style.visibility = "visible";
+            flag = false;
+        }
+        else {
+            document.getElementById("c").style.visibility = "hidden";
+        }
+        return flag;
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "user/index.html" %}
+{% block body %}
+
+<form id="form1" name="form1" method="post" action="">
+  <div align="center">
+    <table style="width:400px;" class="table table-bordered">
+      <tr>
+        <td ><strong>Title:</strong></td>
+          <td>{{ data['title'] }}</td>
+      </tr>
+      <tr>
+        <td><strong>Description:</strong></td>
+          <td>{{ data['description'] }}</td>
+      </tr>
+      <tr>
+        <td><strong>Uploaded by :</strong></td>
+          <td>{{ data['first_name'] }}&nbsp;&nbsp;{{ data['last_name'] }}</td>
+      </tr>
+      <tr>
+        <td><strong>uploaded date:</strong></td>
+          <td>{{ data['created_at'] }}</td>
+      </tr>
+      <tr>
+        <td colspan="2"><div align="center">
+            <a class="btn btn-success" href="/download/{{ data['file_id'] }}">Download</a>
+        </div></td>
+      </tr>
+    </table>
+  </div>
+</form>
+{% endblock %}

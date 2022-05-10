@@ -1,0 +1,55 @@
+{% extends "user/index.html" %}
+{% block body %}
+
+{#<form id="form1" name="form1" method="post" action="/myprivatefile_post">#}
+    <form>
+  <div align="center">
+    <table width="377" height="46" border="0">
+      <tr>
+        <td width="218">
+            <input type="text" name="textfield" class="form-control" placeholder="Search By Keyword" id="textfield" />
+        </td>
+        <td width="143">
+            <input type="button" name="button" class="btn btn-info" id="button" value="Search" />
+        </td>
+      </tr>
+    </table>
+  </div>
+
+<br><br>
+<div align="center">
+  <table style="width: 800px;" class="table table-bordered" id="t1">
+
+  </table>
+</div>
+</form>
+<script src="/static/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+    $("#button").click(function () {
+        cou = $("#textfield").val()
+        $.ajax({
+            url: '/myprivatefile_post',
+            type: 'post',
+            data: {textfield: cou},
+            success: function (respons) {
+                len = respons.length;
+                $("#t1").empty();
+                $("#t1").append('<tr><td width="30"><div align="center"><strong>#</strong></div></td><td width="300"><div align="center"><strong>Title</strong></div></td><td width="140"><div align="center"><strong>Uploaded Date</strong></div></td><td width="130">&nbsp;</td></tr>')
+                for (var i = 0; i <= len; i++) {
+                    title = respons[i]["title"]
+                    date = respons[i]["created_at"]
+                    fileid = respons[i]["file_id"]
+                    index=i+1;
+                    $("#t1").append('<tr><td align="center">'+index+'</td><td>'+title+'</td><td>'+date+'</td><td><div align="center"><a href="/viewdetails/'+fileid+'" class="btn btn-info"><strong>View Details</strong></a></div></td></tr>')
+                }
+            }, error: function (error) {
+
+            }
+
+        });
+    });
+});
+
+</script>
+{% endblock %}
